@@ -1,9 +1,8 @@
-package main
+package repl
 
 import (
 	"bufio"
 	"fmt"
-	"github.com/Kudzeri/Boot.dev-pokedex-go/commands"
 	"os"
 	"strings"
 )
@@ -21,7 +20,7 @@ func StartRepl() {
 			continue
 		}
 		commandName := text[0]
-		availableCommands := getCommands()
+		availableCommands := GetCommands()
 
 		command, ok := availableCommands[commandName]
 
@@ -30,27 +29,27 @@ func StartRepl() {
 			continue
 		}
 
-		command.callback()
+		command.Callback()
 	}
 }
 
 type cliCommand struct {
-	name        string
-	description string
-	callback    func()
+	Name        string
+	Description string
+	Callback    func()
 }
 
-func getCommands() map[string]cliCommand {
+func GetCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"help": {
-			name:        "help",
-			description: "Prints the help menu",
-			callback:    commands.CallbackHelp,
+			Name:        "help",
+			Description: "Prints the help menu",
+			Callback:    CallbackHelp,
 		},
 		"exit": {
-			name:        "exit",
-			description: "Turns off the Pokedex",
-			callback:    commands.CallbackExit,
+			Name:        "exit",
+			Description: "Turns off the Pokedex",
+			Callback:    CallbackExit,
 		},
 	}
 }
