@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/Kudzeri/Boot.dev-pokedex-go/commands"
 	"os"
 	"strings"
 )
@@ -19,22 +20,39 @@ func StartRepl() {
 		if len(text) == 0 {
 			continue
 		}
-		command := text[0]
+		commandName := text[0]
+		availableCommands := getCommands()
 
-		switch command {
-		case "exit":
-			os.Exit(0)
-		case "help":
-			fmt.Println("Welcome to pokedex!")
-			fmt.Println("This list of command:")
-			fmt.Println("- help")
-			fmt.Println("- exit")
-		default:
+		command, ok := availableCommands[commandName]
+
+		if !ok {
 			fmt.Println("invalid command")
-
+			continue
 		}
-	}
 
+		command.callback()
+	}
+}
+
+type cliCommand struct {
+	name        string
+	description string
+	callback    func()
+}
+
+func getCommands() map[string]cliCommand {
+	return map[string]cliCommand{
+		"help": {
+			name:        "help",
+			description: "Prints the help menu",
+			callback:    commands.CallbackHelp,
+		},
+		"exit": {
+			name:        "exit",
+			description: "Turns off the Pokedex",
+			callback:    commands.CallbackExit,
+		},
+	}
 }
 
 func CleanInput(str string) []string {
