@@ -19,8 +19,20 @@ func StartRepl() {
 		if len(text) == 0 {
 			continue
 		}
+		command := text[0]
 
-		fmt.Println(text)
+		switch command {
+		case "exit":
+			os.Exit(0)
+		case "help":
+			fmt.Println("Welcome to pokedex!")
+			fmt.Println("This list of command:")
+			fmt.Println("- help")
+			fmt.Println("- exit")
+		default:
+			fmt.Println("invalid command")
+
+		}
 	}
 
 }
