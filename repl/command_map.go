@@ -6,7 +6,7 @@ import (
 	"github.com/Kudzeri/Boot.dev-pokedex-go/repl/config"
 )
 
-func CallbackMap(cfg *config.Config) error {
+func CallbackMap(cfg *config.Config, args ...string) error {
 
 	resp, err := cfg.PokeapiClient.ListLocationAreas(cfg.NextLocationAreaURL)
 	if err != nil {
@@ -24,7 +24,7 @@ func CallbackMap(cfg *config.Config) error {
 	return nil
 }
 
-func CallbackMapb(cfg *config.Config) error {
+func CallbackMapb(cfg *config.Config, args ...string) error {
 	if cfg.PrevLocationAreaURL == nil {
 		return errors.New("you're on first page")
 	}

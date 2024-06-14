@@ -5,7 +5,7 @@ import (
 	"github.com/Kudzeri/Boot.dev-pokedex-go/repl/config"
 )
 
-func CallbackHelp(cfg *config.Config) error {
+func CallbackHelp(cfg *config.Config, args ...string) error {
 	fmt.Println("Welcome to pokedex!")
 	fmt.Println("This list of command:")
 	commands := GetCommands()
