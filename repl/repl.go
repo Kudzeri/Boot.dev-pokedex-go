@@ -36,7 +36,7 @@ func StartRepl() {
 type cliCommand struct {
 	Name        string
 	Description string
-	Callback    func()
+	Callback    func() error
 }
 
 func GetCommands() map[string]cliCommand {
