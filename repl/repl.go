@@ -30,7 +30,10 @@ func StartRepl(cfg *config.Config) {
 			continue
 		}
 
-		command.Callback(cfg)
+		err := command.Callback(cfg)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 
@@ -54,8 +57,13 @@ func GetCommands() map[string]cliCommand {
 		},
 		"map": {
 			Name:        "map",
-			Description: "Prints pokedex map locations",
+			Description: "Prints pokedex location areas",
 			Callback:    CallbackMap,
+		},
+		"mapb": {
+			Name:        "mapb",
+			Description: "Back the previous page of location areas",
+			Callback:    CallbackMapb,
 		},
 	}
 }
