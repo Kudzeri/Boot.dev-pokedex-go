@@ -1,8 +1,11 @@
 package repl
 
-import "os"
+import (
+	"github.com/Kudzeri/Boot.dev-pokedex-go/repl/config"
+	"os"
+)
 
-func CallbackExit() error {
+func CallbackExit(cfg *config.Config) error {
 	os.Exit(0)
 	return nil
 }

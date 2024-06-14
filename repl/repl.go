@@ -3,11 +3,12 @@ package repl
 import (
 	"bufio"
 	"fmt"
+	"github.com/Kudzeri/Boot.dev-pokedex-go/repl/config"
 	"os"
 	"strings"
 )
 
-func StartRepl() {
+func StartRepl(cfg *config.Config) {
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
@@ -29,14 +30,14 @@ func StartRepl() {
 			continue
 		}
 
-		command.Callback()
+		command.Callback(cfg)
 	}
 }
 
 type cliCommand struct {
 	Name        string
 	Description string
-	Callback    func() error
+	Callback    func(*config.Config) error
 }
 
 func GetCommands() map[string]cliCommand {

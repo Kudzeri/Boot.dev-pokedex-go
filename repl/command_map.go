@@ -3,10 +3,11 @@ package repl
 import (
 	"fmt"
 	"github.com/Kudzeri/Boot.dev-pokedex-go/internal/pokeapi"
+	"github.com/Kudzeri/Boot.dev-pokedex-go/repl/config"
 	"log"
 )
 
-func CallbackMap() error {
+func CallbackMap(cfg *config.Config) error {
 	pokeapiClient := pokeapi.NewClient()
 
 	resp, err := pokeapiClient.ListLocationAreas()
