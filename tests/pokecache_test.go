@@ -1,13 +1,14 @@
-package pokecache
+package tests
 
 import (
+	"github.com/Kudzeri/Boot.dev-pokedex-go/internal/pokecache"
 	"testing"
 	"time"
 )
 
 func TestCreateCache(t *testing.T) {
 	interval := time.Millisecond * 10
-	cache := NewCache(interval)
+	cache := pokecache.NewCache(interval)
 
 	if cache.Cache == nil {
 		t.Errorf("cache is nil")
@@ -16,7 +17,7 @@ func TestCreateCache(t *testing.T) {
 
 func TestGetCache(t *testing.T) {
 	interval := time.Millisecond * 10
-	cache := NewCache(interval)
+	cache := pokecache.NewCache(interval)
 
 	cases := []struct {
 		inputKey    string
@@ -53,7 +54,7 @@ func TestGetCache(t *testing.T) {
 
 func TestCache_Reap(t *testing.T) {
 	interval := time.Millisecond * 10
-	cache := NewCache(interval)
+	cache := pokecache.NewCache(interval)
 
 	keyOne := "key1"
 	cache.Add(keyOne, []byte("val1"))
