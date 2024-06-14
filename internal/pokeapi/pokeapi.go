@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const baseURL = "https://pokeapi.co/api/v2/"
+const baseURL = "https://pokeapi.co/api/v2"
 
 type Client struct {
 	httpClint http.Client
