@@ -11,6 +11,7 @@ func main() {
 
 	cfg := config.Config{
 		PokeapiClient: pokeapi.NewClient(time.Hour),
+		CaughtPokemon: map[string]pokeapi.Pokemon{},
 	}
 	repl.StartRepl(&cfg)
 }
